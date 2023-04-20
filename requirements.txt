@@ -3,3 +3,4 @@ streamlit as st
 pandas as pd
 json
 os
+matplotlib
