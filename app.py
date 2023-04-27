@@ -6,6 +6,7 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
 import time
+import streamlit_authenticator as stauth
 
 # Funktion zum Laden der Daten aus der JSON-Datei
 def load_data(filename):
