@@ -1,12 +1,12 @@
 credentials:
   usernames:
-    samuel:
-      email: redjajs@students.zhaw.ch
-      name: Ajshe Redjepi
-      password: $2b$12$ayVbKrpc0hJDEJrmYT9..u999EZtjVrnJ1OMfMJxiE7vA1ckn0hHW # To be replaced with hashed password
+    ajshe:
+      email: samuel.wehrli@gmail.com
+      name: Samuel Wehrli
+      password:$2b$12$UtIMHvsQIJBX/BEsALu5q.WfNcXI/CpdDl3Yzcb7rn2u4NthygqrW# To be replaced with hashed password
     guest:
       name: Gast
-      password: $2b$12$tK8SbVmvMUakwq1ADl2sgOGoeQY6AcRsHSJhZc672.517Cg23kLZK # To be replaced with hashed password
+      password: $2b$12$eJs.tngJrmeYayLV6tU1tO85R3JO70t5mOZZPpS9L3ygF0Xs1yo1u # To be replaced with hashed password
 cookie:
   expiry_days: 30  # number of days until password is asked again
   key: JgDyEoKUNItM5prxo194jDeLYzVzmYE6 # Must be string, use https://randomkeygen.com/
