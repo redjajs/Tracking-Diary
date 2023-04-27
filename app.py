@@ -6,7 +6,7 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
 import time
-import streamlit_authenticator as stauth
+#import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
 
