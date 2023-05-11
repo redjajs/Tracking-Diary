@@ -1,4 +1,5 @@
 matplotlib
 streamlit_authenticator 
-
-
+matplotlib.pyplot
+matplotlib.dates
+time
