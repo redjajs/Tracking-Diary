@@ -1,6 +1,6 @@
 credentials:
   usernames:
-    ajshe:
+    student1:
       email: samuel.wehrli@gmail.com
       name: Samuel Wehrli
       password: $2b$12$UtIMHvsQIJBX/BEsALu5q.WfNcXI/CpdDl3Yzcb7rn2u4NthygqrW # To be replaced with hashed password
