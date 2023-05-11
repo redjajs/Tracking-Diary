@@ -191,7 +191,7 @@ with tab2:
 # Dritte Seite der App: Hier werden Empfehlungen für den User vorgeschlagen.
 with tab3:
     st.header('_:orange[Tipps]_:bulb:')
-    st.text(tips)
+    string = (tips)
     
     # # Tipps aus JSON-Datei laden
     # tips_data = load_data('tips.json')
