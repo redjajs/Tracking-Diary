@@ -30,6 +30,7 @@ def load_key(api_key, bin_id, key, empty_value=[]):
     headers = {'X-Master-Key': api_key}
     res = requests.get(url, headers=headers).json()
     res = res['record']
+
     if key in res:
         return res[key]
     else:
