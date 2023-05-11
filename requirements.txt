@@ -1,7 +1,3 @@
-pandas
-streamlit as st
-pandas as pd
-json
-os
+matplotlib
 streamlit_authenticator 
 
