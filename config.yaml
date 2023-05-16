@@ -3,7 +3,7 @@ credentials:
     Elaj:
       email: redjajs@students.zhaw.ch
       name: Ajshe Redjepi
-      password: $2b$12$2xusbh2xC4A2XA032bAlauTIiDtXbAYqWHCCkCmwP6dv7Y2COd/Ku  # To be replaced with hashed password
+      password: $2b$12$he2ibOWrbcPa8Nx1fODeHe29SS2vyHcDy0DUomsRupc0YRJg9RskK  # To be replaced with hashed password
     guest: 
       name: Gast
       password: $2b$12$GZQzPGox/Xlj6ugKSl1WnuicaNN8RcjQUsApzI4TDNwS3BNeDj4sG  # To be replaced with hashed password
