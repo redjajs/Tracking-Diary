@@ -160,7 +160,7 @@ with tab2:
     if not data:
         st.warning("Es wurden noch keine Daten gespeichert.")
     else:
-        df = pd.DataFrame(data)
+        df = pd.read_json(data)
         st.write(df)
         
         
