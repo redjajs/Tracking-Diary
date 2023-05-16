@@ -148,6 +148,7 @@ with tab1:
         # Umwandlung zurück zu Dictionary
         data_dict = df.to_dict(orient="records")
         save_key(api_key, bin_id, username, data_dict)
+        hallo = save_key(api_key, bin_id, username, data_dict)
         #save_data(data_dict, "blutdruck.json")
         st.info("Die Daten wurden gespeichert.")
 
@@ -156,7 +157,7 @@ with tab2:
     st.header('_:orange[Tagebuch]_:book:')
     st.subheader('Deine Messwerte')
  # Daten werden aus JSON-Datei geladen und ein DataFrame wird aus der JSON-Datei erstellt.
-    data = load_data(api_key, bin_id):
+    data = load_data(hallo)
     if not data:
         st.warning("Es wurden noch keine Daten gespeichert.")
     else:
