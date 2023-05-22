@@ -157,7 +157,7 @@ with tab2:
     st.header('_:orange[Tagebuch]_:book:')
     st.subheader('Deine Messwerte')
  # Daten werden aus JSON-Datei geladen und ein DataFrame wird aus der JSON-Datei erstellt.
-    data = load_key(api_key, json_bin, username)
+    data = load_key(api_key, bin_id, username)
     if not data: 
         st.warning("Es wurden noch keine Daten gespeichert.")
     else:
