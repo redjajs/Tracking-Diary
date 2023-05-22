@@ -148,8 +148,6 @@ with tab1:
         # Umwandlung zurück zu Dictionary
         data_dict = df.to_dict(orient="records")
         save_key(api_key, bin_id, username, data_dict)
-        #hallo = api_key, bin_id, username, data_dict
-        #save_data(data_dict, "blutdruck.json")
         st.info("Die Daten wurden gespeichert.")
 
 # Zweite Seite der App: Tagebuch, hier werden die Messwerte gespeichert.
