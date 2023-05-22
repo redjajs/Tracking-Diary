@@ -13,6 +13,36 @@ import streamlit_authenticator as stauth
 
 
 
+
+# def set_blue_background():
+#     bg_color = "background-color: lightblue;"
+#     text_color = "color: white;"
+#     padding = "padding: 10px;"
+
+#     # Benutzerdefinierten CSS-Code generieren
+#     css = f"""
+#         <style>
+#         body {{
+#             {bg_color}
+#         }}
+
+#         .stApp {{
+#             {bg_color}
+#             {text_color}
+#             {padding}
+#         }}
+#         </style>
+#     """
+
+#     # CSS-Code mithilfe von st.markdown() einfügen
+#     st.markdown(css, unsafe_allow_html=True)
+
+# # Beispielanwendung
+# set_blue_background()
+
+
+
+
 tips = {
     "hoher Blutdruck": [
         "Vermeide salzhaltige Nahrung",
@@ -29,10 +59,6 @@ tips = {
         "Trinken Sie viel, um Ihren Fl\u00fcssigkeitshaushalt aufrechtzuerhalten."
     ]
 }
-
-
-
-
 
 
 
@@ -62,12 +88,12 @@ elif authentication_status == None:
     st.warning('Please enter your username and password')
     st.stop()
 
-#data = load_key(api_key, bin_id, username)
+# data = load_key(api_key, bin_id, username)
+# res = save_key(api_key, bin_id, username, data)
 
 st.write(username)
-data = load_key(api_key, bin_id, username)
-res = save_key(api_key, bin_id, username, data)
-st.write(data)
+test = load_key(api_key, bin_id, username)
+st.write(test)
 
 #APP
 # Funktion zum Laden der Daten aus der JSON-Datei
@@ -86,8 +112,10 @@ def save_data(data, filename):
 
 # Daten werden geladen und ins DataFrame konvertiert.
 #tracked_data = load_data("blutdruck.json")
-tracked_data = load_key(api_key, bin_id, username)
-tracked_data = pd.DataFrame(tracked_data)
+#tracked_data = load_key(api_key, bin_id, username)
+test= pd.DataFrame(test)
+
+
 
 # Benachrichtigung mithilfe einer Checkbox in der Sidebar. Die Benachrichtigung soll nicht länger als 3 sekunden eingeblendet werden.
 checkbox = st.sidebar.checkbox("Benachrichtigung")
@@ -97,7 +125,7 @@ if checkbox:
     while time.time() - start_time < 3:
         pass
     info_banner.empty()
-
+    
 else:
     info_banner = st.info("Benachrichtigung deaktiviert!")
     start_time = time.time()
@@ -143,11 +171,12 @@ with tab1:
                     'Diastole': [diastole]}
         new_data = pd.DataFrame(new_data)
         # Pandas wurde benutzt, um die neuen daten an bestehende Daten als neue Zeile anzuhängen.
-        df = pd.concat([tracked_data, new_data], ignore_index=True)
+        df = pd.concat([test, new_data], ignore_index=True)
         df = df.fillna('')
         # Umwandlung zurück zu Dictionary
         data_dict = df.to_dict(orient="records")
         save_key(api_key, bin_id, username, data_dict)
+        #save_data(data_dict, "blutdruck.json")
         st.info("Die Daten wurden gespeichert.")
 
 # Zweite Seite der App: Tagebuch, hier werden die Messwerte gespeichert.
@@ -155,11 +184,11 @@ with tab2:
     st.header('_:orange[Tagebuch]_:book:')
     st.subheader('Deine Messwerte')
  # Daten werden aus JSON-Datei geladen und ein DataFrame wird aus der JSON-Datei erstellt.
-    #data = load_key(api_key, bin_id, username)
-    if not data: 
+    test = load_key(api_key, bin_id, username, test)
+    if not test:
         st.warning("Es wurden noch keine Daten gespeichert.")
     else:
-        df = pd.read_json(data)
+        df = pd.DataFrame(test)
         st.write(df)
         
         
@@ -259,6 +288,12 @@ with tab3:
 #Optik Design
 st.write("---")
 st.text('© 2023 Applaunch Wädenswil ZHAW')
+
+
+
+
+
+
 
 
 
