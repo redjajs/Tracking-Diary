@@ -157,7 +157,7 @@ with tab2:
     st.header('_:orange[Tagebuch]_:book:')
     st.subheader('Deine Messwerte')
  # Daten werden aus JSON-Datei geladen und ein DataFrame wird aus der JSON-Datei erstellt.
-    data = load_key(hallo)
+    data = load_key('blutdruck.json')
     if not data: 
         st.warning("Es wurden noch keine Daten gespeichert.")
     else:
