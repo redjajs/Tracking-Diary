@@ -14,31 +14,31 @@ import streamlit_authenticator as stauth
 
 
 
-# def set_blue_background():
-#     bg_color = "background-color: lightblue;"
-#     text_color = "color: white;"
-#     padding = "padding: 10px;"
+def set_blue_background():
+    bg_color = "background-color: lightgrey;"
+    text_color = "color: white;"
+    padding = "padding: 10px;"
 
-#     # Benutzerdefinierten CSS-Code generieren
-#     css = f"""
-#         <style>
-#         body {{
-#             {bg_color}
-#         }}
+    # Benutzerdefinierten CSS-Code generieren
+    css = f"""
+        <style>
+        body {{
+            {bg_color}
+        }}
 
-#         .stApp {{
-#             {bg_color}
-#             {text_color}
-#             {padding}
-#         }}
-#         </style>
-#     """
+        .stApp {{
+            {bg_color}
+            {text_color}
+            {padding}
+        }}
+        </style>
+    """
 
-#     # CSS-Code mithilfe von st.markdown() einfügen
-#     st.markdown(css, unsafe_allow_html=True)
+    # CSS-Code mithilfe von st.markdown() einfügen
+    st.markdown(css, unsafe_allow_html=True)
 
-# # Beispielanwendung
-# set_blue_background()
+# Beispielanwendung
+set_blue_background()
 
 
 
