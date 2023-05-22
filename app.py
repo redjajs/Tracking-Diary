@@ -193,7 +193,7 @@ with tab2:
         
         
     # Konvertierung 'Date' und 'Time' in einen DateTime-Datentyp
-        df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
+        df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'],format='mixed')
         
         # DateTime' wird als Index eingesetzt.
         df = df.set_index('DateTime')
