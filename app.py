@@ -152,7 +152,7 @@ with tab1:
     st.subheader("_:orange[Tracking]_:pencil2:")
 
     # Eingabefelder wurden hinzugefügt.
-    date = st.date_input("Datum", value=pd.Timestamp.now().date())
+    date = st.date_input("Datum", value=pd.Timestamp.now(tz='Europe/Zurich').date())
     time = st.time_input("Uhrzeit", value=pd.Timestamp.now(tz='Europe/Zurich').time())
     systole = st.number_input("Systole", min_value=0, max_value=300, value=0, step=1)
     diastole = st.number_input("Diastole", min_value=0, max_value=300, value=0, step=1)
