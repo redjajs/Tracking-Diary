@@ -65,9 +65,9 @@ elif authentication_status == None:
 #data = load_key(api_key, bin_id, username)
 
 st.write(username)
-test = load_key(api_key, bin_id, username)
-res = save_key(api_key, bin_id, username, test)
-st.write(test)
+data = load_key(api_key, bin_id, username)
+res = save_key(api_key, bin_id, username, data)
+st.write(data)
 
 #APP
 # Funktion zum Laden der Daten aus der JSON-Datei
