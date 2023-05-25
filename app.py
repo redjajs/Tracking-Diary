@@ -231,12 +231,6 @@ def show_startseite():
 
             # Konvertiere vorhandene Daten in ein DataFrame, wenn vorhanden, oder erstelle ein neues DataFrame
 
-            #NEU
-            if existing_data:
-            df = pd.DataFrame(existing_data)
-            else:
-            df = pd.DataFrame()
-            #neu
             df = pd.concat([test, new_data], ignore_index=True)
             df = df.fillna('')
             # Umwandlung zurück zu Dictionary
