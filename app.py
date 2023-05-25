@@ -181,7 +181,7 @@ def show_personalien():
         api_key = jsonbin_secrets["api_key"]
         bin_id_personalien = jsonbin_secrets["bin_id_personalien"]
 
-        save_key(api_key, bin_id_personalien, username)
+        save_key(api_key, bin_id_personalien, username, data)
   
     #Optik Design
     st.write("---")
