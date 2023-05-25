@@ -176,6 +176,12 @@ def show_personalien():
         save_data(existing_data, filename)
     
         st.success("Daten wurden gespeichert")
+        
+        jsonbin_secrets = st.secrets["jsonbin"]
+        api_key = jsonbin_secrets["api_key"]
+        bin_id_personalien = jsonbin_secrets["bin_id_personalien"]
+
+        save_key(api_key, bin_id_personalien)
   
     #Optik Design
     st.write("---")
