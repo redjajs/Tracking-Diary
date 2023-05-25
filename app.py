@@ -267,11 +267,6 @@ def show_startseite():
             st.subheader("Blutdruckverlauf")
             st.pyplot(fig)
             
-            new_row = {'Date': str(date), 'Time': str(time), 'Systole': systole, 'Diastole': diastole}
-            df = df.contact(new_row, ignore_index=True)
-            df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
-            df = df.set_index('DateTime')
-            
                     
     
     #Optik Design
