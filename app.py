@@ -10,13 +10,28 @@ from jsonbin import load_key, save_key
 import yaml
 from yaml.loader import SafeLoader
 import streamlit_authenticator as stauth
+from pages import Personalien
+from pages import Tipps
 
 
+# Laden der Personalien Seite aus anderen Python Datei
+def show():
+    Personalien.show()
 
+if __name__ == "__show__":
+    show()
+    
+def show():
+    Tipps.show()
 
+if __name__ == "__show__":
+    show()
+    
+
+# Hintergrundfarbe anpassen
 def set_blue_background():
-    bg_color = "background-color: lightgrey;"
-    text_color = "color: white;"
+    bg_color = "background-color: lightsteelblue;"
+    text_color = "color: black;"
     padding = "padding: 10px;"
 
     # Benutzerdefinierten CSS-Code generieren
@@ -34,38 +49,22 @@ def set_blue_background():
         </style>
     """
 
-    # CSS-Code mithilfe von st.markdown() einfügen
     st.markdown(css, unsafe_allow_html=True)
 
-# Beispielanwendung
 set_blue_background()
 
 
-
-
-tips = {
-    "hoher Blutdruck": [
-        "Vermeide salzhaltige Nahrung",
-        "Vermeide Koffein",
-        "Vermeide k\u00f6rperliche Anstrengung in der n\u00e4chsten Stunde",
-        "Trinke Zitronenwasser",
-        "Achten Sie auf eine ausgewogene Ern\u00e4hrung mit viel Obst und Gem\u00fcse."
-    ],
-    "Niedriger Blutdruck": [
-        "Konsumiere salzhaltige Nahrung",
-        "Konsumiere Koffein",
-        " Vermeiden Sie pl\u00f6tzliches Aufstehen, um Schwindelgef\u00fchle zu vermeiden.",
-        "Tragen Sie Kompressionsstr\u00fcmpfe, um den Blutfluss zu verbessern.",
-        "Trinken Sie viel, um Ihren Fl\u00fcssigkeitshaushalt aufrechtzuerhalten."
-    ]
-}
-
-
-
-# -------- load secrets for jsonbin.io --------
+# Laden von Secrets für jsonbin.io 
 jsonbin_secrets = st.secrets["jsonbin"]
 api_key = jsonbin_secrets["api_key"]
 bin_id = jsonbin_secrets["bin_id"]
+ 
+
+# jsonbin_secrets = st.secrets["jsonbin"]
+# api_key = jsonbin_secrets["api_key"]
+# bin_id_personalien = jsonbin_secrets["bin_id_personalien"]
+
+
 
 with open('config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
@@ -77,6 +76,7 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days'],
 )
 
+# Login generiert
 fullname, authentication_status, username = authenticator.login('Login', 'main')
 
 if authentication_status == True:   # login successful
@@ -88,12 +88,10 @@ elif authentication_status == None:
     st.warning('Please enter your username and password')
     st.stop()
 
-# data = load_key(api_key, bin_id, username)
-# res = save_key(api_key, bin_id, username, data)
 
-st.write(username)
+# st.write(username)
 test = load_key(api_key, bin_id, username)
-st.write(test)
+# st.write(test)
 
 #APP
 # Funktion zum Laden der Daten aus der JSON-Datei
@@ -111,45 +109,53 @@ def save_data(data, filename):
         json.dump(data, file, indent=2, ensure_ascii=False)
 
 # Daten werden geladen und ins DataFrame konvertiert.
-#tracked_data = load_data("blutdruck.json")
-#tracked_data = load_key(api_key, bin_id, username)
 test= pd.DataFrame(test)
 
 
 
-# Benachrichtigung mithilfe einer Checkbox in der Sidebar. Die Benachrichtigung soll nicht länger als 3 sekunden eingeblendet werden.
+# Benachrichtigung mithilfe einer Checkbox in der Sidebar. 
 checkbox = st.sidebar.checkbox("Benachrichtigung")
 if checkbox:
     info_banner = st.info("Benachrichtigung aktiviert!")
     start_time = time.time()
-    while time.time() - start_time < 3:
+    while time.time() - start_time < 1:
         pass
     info_banner.empty()
-    
+
 else:
     info_banner = st.info("Benachrichtigung deaktiviert!")
     start_time = time.time()
-    while time.time() - start_time < 3:
+    while time.time() - start_time < 1:
         pass
     info_banner.empty()
 
 
-# Titel und Untertitel der App
-st.title(':blue[TrackingDiary©]')
-st.subheader('_Dein täglicher Begleiter._')
-st.write("---")
-string=("Mit der Tracking App kannst du deinen täglichen Blutdruck schnell und simpel erfassen und sie bietet dir einen Überblick über deine Messdaten.")
-st.markdown(string)
-st.write("---")
+# Titel und Untertitel der Startseite
+# st.title(':black[TrackingDiary©]')
+# st.subheader('_Dein täglicher Begleiter._')
+# st.write("---")
+# string=("Mit der Tracking App kannst du deinen täglichen Blutdruck schnell und simpel erfassen und sie bietet dir einen Überblick über deine Messdaten.")
+# st.markdown(string)
+# st.write("---")
 
 # Tabs wurden definiert.
-tab1, tab2, tab3 = st.tabs(["Tracking", "Tagebuch", "Tipps"])
+tab1, tab2,tab3 = st.tabs(["Über uns","Tracking", "Tagebuch"])
+
+
+
+with tab1:
+    st.title(':black[TrackingDiary©]')
+    st.subheader('_Dein täglicher Begleiter._')
+    st.write("---")
+    string=("Mit der Tracking App kannst du deinen täglichen Blutdruck schnell und simpel erfassen und sie bietet dir einen Überblick über deine Messdaten.")
+    st.markdown(string)
+    # st.write("---")
 
 # Erste Seite der App: Tracking, hier werden die Werte eingetragen.
 # Datum und Zeit wurden in einen String verwandelt, damit die Werte im JSON Format gespeichert werden können. 
 # Alle values der Key-value Paare wurden als Liste umgewandelt, damit ein DataFrame erstellt werden kann.
-with tab1:
-    st.subheader("_:orange[Tracking]_:pencil2:")
+with tab2:
+    st.subheader("_:black[Tracking]_:pencil2:")
 
     # Eingabefelder wurden hinzugefügt.
     date = st.date_input("Datum", value=pd.Timestamp.now(tz='Europe/Zurich').date())
@@ -179,8 +185,8 @@ with tab1:
         #save_data(data_dict, "blutdruck.json")
         st.info("Die Daten wurden gespeichert.")
 
-# Zweite Seite der App: Tagebuch, hier werden die Messwerte gespeichert.
-with tab2:
+# Zweite Seite der Startseite: Tagebuch, hier werden die Messwerte gespeichert.
+with tab3:
     st.header('_:orange[Tagebuch]_:book:')
     st.subheader('Deine Messwerte')
  # Daten werden aus JSON-Datei geladen und ein DataFrame wird aus der JSON-Datei erstellt.
@@ -193,7 +199,7 @@ with tab2:
         
         
     # Konvertierung 'Date' und 'Time' in einen DateTime-Datentyp
-        df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'],format='mixed')
+        df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
         
         # DateTime' wird als Index eingesetzt.
         df = df.set_index('DateTime')
@@ -216,74 +222,7 @@ with tab2:
         st.subheader("Blutdruckverlauf")
         st.pyplot(fig)
 
-# Dritte Seite der App: Hier werden Empfehlungen für den User vorgeschlagen.
-with tab3:
-    st.header('_:orange[Tipps]_:bulb:')
-    st.write(tips)
     
-    # # Tipps aus JSON-Datei laden
-    # tips_data = load_data('tips.json')
-    # if tips_data:
-    #     for key, value in tips_data.items():
-    #         st.subheader(key)
-    #         for tip in value:
-    #             st.write(f"- {tip}")
-
-# # Tipps für einen zu hohen Blutdruck
-# if 'Too High Blood Pressure' in tips_data:
-#     tips_data['Too High Blood Pressure'] = ['Vermeide salzhaltige Nahrung', 'Vermeide Koffein','Vermeide körperliche Anstrengung in der nächsten Stunde','Trinke Zitronenwasser','Achten Sie auf eine ausgewogene Ernährung mit viel Obst und Gemüse.']
-
-
-# # Schreiben der modifizierten JSON-Daten in die Datei.
-# with open('tips.json', 'w') as json_file:
-#     json.dump(tips_data, json_file, indent=4)
-    
-    
-# with open('tips.json', 'r') as json_file:
-#     tips_data = json.load(json_file)
-
-# # Laden der JSON-Daten
-# # Tipps für einen niedrigen Blutdruck
-# if 'Too Low Blood Pressure' in tips_data:
-#     tips_data['Too Low Blood Pressure'] = ['Konsumiere salzhaltige Nahrung', 'Konsumiere Koffein',' Vermeiden Sie plötzliches Aufstehen, um Schwindelgefühle zu vermeiden.', 'Tragen Sie Kompressionsstrümpfe, um den Blutfluss zu verbessern.','Trinken Sie viel, um Ihren Flüssigkeitshaushalt aufrechtzuerhalten.']
-
-
-# # Schreiben der modifizierten JSON-Daten in die Datei
-# with open('tips.json', 'w') as json_file:
-#     json.dump(tips_data, json_file, indent=4)
-
-# # Laden der JSON-Daten
-# with open('tips.json', 'r') as json_file:
-#     tips_data = json.load(json_file)
-
-
-# #Titel des JSON Inhalts wird geändert.
-# # JSON-Datei laden
-# with open('tips.json', 'r') as json_file:
-#     tips_data = json.load(json_file)
-
-
-# # Titel ändern 1: von ,,Too High Blood Pressure'' zu ,,Hoher Blutdruck''.
-# if 'Too High Blood Pressure' in tips_data:
-#     tips_data['hoher Blutdruck'] = tips_data.pop('Too High Blood Pressure')
-#     # Hier wird der Titel von 'Too High Blood Pressure' zu 'Hoher Blutdruck' geändert.
-
-# # Modifizierte JSON-Datei wird gespeichert.
-# with open('tips.json', 'w') as json_file:
-#     json.dump(tips_data, json_file, indent=4)
-
-
-
-# #Titel ändern 2 von ,,Too Low Blood Pressure'' zu ,,Niederiger Blutdruck''.
-# if 'Too Low Blood Pressure' in tips_data:
-#     tips_data['Niedriger Blutdruck'] = tips_data.pop('Too Low Blood Pressure')
-#     # Hier wird der Titel von 'Too Low Blood Pressure' zu 'Niedriger BLutdruck' geändert.
-
-
-# # Modifizierte JSON-Datei wird gespeichert.
-# with open('tips.json', 'w') as json_file:
-#     json.dump(tips_data, json_file, indent=4)
-
 
 #Optik Design
 st.write("---")
