@@ -260,8 +260,9 @@ def show_startseite():
             st.write(df)
            
             
-        # Konvertierung 'Date' und 'Time' in einen DateTime-Datentyp
-            df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
+            # Konvertierung 'Date' und 'Time' in einen DateTime-Datentyp
+            #df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
+            df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'], format='mixed', dayfirst=True)
             
             # DateTime' wird als Index eingesetzt.
             df = df.set_index('DateTime')
@@ -283,7 +284,9 @@ def show_startseite():
             # Plot wird auf Streamlit angezeigt.
             st.subheader("Blutdruckverlauf")
             st.pyplot(fig)
-                
+            # Konvertierung 'Date' und 'Time' in einen DateTime-Datentyp
+
+
                                     
                     
                 #Optik Design
