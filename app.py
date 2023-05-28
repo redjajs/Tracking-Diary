@@ -112,20 +112,20 @@ test = pd.DataFrame(test)
 
 
 # Benachrichtigung mithilfe einer Checkbox in der Sidebar. 
-checkbox = st.sidebar.checkbox("Benachrichtigung")
-if checkbox:
-    info_banner = st.info("Benachrichtigung aktiviert!")
-    start_time = time.time()
-    while time.time() - start_time < 1:
-        pass
-    info_banner.empty()
+#checkbox = st.sidebar.checkbox("Benachrichtigung")
+#if checkbox:
+    #info_banner = st.info("Benachrichtigung aktiviert!")
+    #start_time = time.time()
+   # while time.time() - start_time < 1:
+       # pass
+    #info_banner.empty()
 
-else:
-    info_banner = st.info("Benachrichtigung deaktiviert!")
-    start_time = time.time()
-    while time.time() - start_time < 1:
-        pass
-    info_banner.empty()
+#else:
+    #info_banner = st.info("Benachrichtigung deaktiviert!")
+    #start_time = time.time()
+    #while time.time() - start_time < 1:
+       # pass
+    #info_banner.empty()
     
 
 # Funktion zum Laden der Daten aus der JSON-Datei
@@ -201,7 +201,20 @@ test = pd.DataFrame(test)
 def show_startseite():  
 # Tabs wurden definiert.
     tab1, tab2, tab3 = st.tabs(["Über uns","Tracking", "Tagebuch"])
-
+    checkbox = st.sidebar.checkbox("Benachrichtigung")
+    if checkbox:
+        info_banner = st.info("Benachrichtigung aktiviert!")
+        start_time = time.time()
+        while time.time() - start_time < 1:
+            pass
+        info_banner.empty()
+    
+    else:
+        info_banner = st.info("Benachrichtigung deaktiviert!")
+        start_time = time.time()
+        while time.time() - start_time < 1:
+            pass
+        info_banner.empty()
     
     with tab1:
         st.title(':black[TrackingDiary©]')
@@ -221,7 +234,7 @@ def show_startseite():
         # Eingabefelder wurden hinzugefügt.
         
         date = st.date_input("Datum", value=pd.Timestamp.now(tz='Europe/Zurich').date())
-        time = st.time_input("Uhrzeit", value=pd.Timestamp.now(tz='Europe/Zurich').time())
+        time1 = st.time_input("Uhrzeit", value=pd.Timestamp.now(tz='Europe/Zurich').time())
         systole = st.number_input("Systole", min_value=0, max_value=300, value=0, step=1)
         diastole = st.number_input("Diastole", min_value=0, max_value=300, value=0, step=1)
         if st.button('Speichern'):
@@ -234,7 +247,7 @@ def show_startseite():
                 st.success("Dein Blutdruck ist optimal.")
             # Neue eingetragene Werte werden gespeichert.
             new_data = {'Date': [str(date)], 
-                        'Time': [str(time)],
+                        'Time': [str(time1)],
                         'Systole': [systole],
                         'Diastole': [diastole]}
             new_data = pd.DataFrame(new_data)
