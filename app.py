@@ -201,8 +201,8 @@ test = pd.DataFrame(test)
 def show_startseite():  
 # Tabs wurden definiert.
     tab1, tab2, tab3 = st.tabs(["Über uns","Tracking", "Tagebuch"])
-    checkbox = st.sidebar.checkbox("Benachrichtigung")
-    if checkbox:
+    checkbox_state = st.sidebar.checkbox("Benachrichtigung")
+    if checkbox_state:
         info_banner = st.info("Benachrichtigung aktiviert!")
         start_time = time.time()
         while time.time() - start_time < 1:
